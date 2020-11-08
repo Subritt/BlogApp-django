@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 from .models import Post
 
 # home page
@@ -7,6 +8,12 @@ def home(request):
         'posts': Post.objects.all()
     }
     return render(request, 'blog/home.html', context)
+
+class PostListView(ListView):
+    model = Post
+    template_name = 'blog/home.html' # <app>/<post>_<viewtype>.html
+    context_object_name = 'posts'
+    ordering = ['-date_posted']
 
 # about page
 def about(request):
