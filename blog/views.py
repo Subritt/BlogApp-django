@@ -29,7 +29,7 @@ class PostCreateView(CreateView):
     # over riding form_valid function
     def form_valid(self, form):
         form.instance.author = self.request.user
-        return super.form_valid(form)
+        return super().form_valid(form)
 
 # about page
 def about(request):
